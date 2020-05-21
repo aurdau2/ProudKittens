@@ -1,5 +1,4 @@
 <?php
-
 $username = "";
 $password = "";
 $storedPsw = "";
@@ -9,7 +8,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	$password = $_POST['password'];
 }
 
-if (!empty($username) || !empty($password)){
+if (!empty($username) && !empty($password)){
  $host = "localhost";
     $dbUsername = "root";
     $dbPassword = "";
@@ -25,9 +24,6 @@ if (!empty($username) || !empty($password)){
 		$stmt->bind_result($storedPsw);
 		while ($stmt->fetch()) {
 			if (password_verify($password, $storedPsw)) {
-				/* echo '<script language="javascript">';
-				 echo 'alert("Password is valid!")';
-				 echo '</script>';*/
 				 session_start();
 				 $_SESSION['uname'] = $username;
 				 echo "<script type='text/javascript'> document.location = 'Home.php'; </script>";
@@ -36,10 +32,9 @@ if (!empty($username) || !empty($password)){
 				 exit();
 			}else {
 				echo '<script language="javascript">';
-				echo 'alert("Invalid password.")';
-				//echo 'document.getElementById("pswLogin").value = "a";';
+				echo 'alert("Invalid password.");';
+				echo 'document.getElementById("pswLogin").value = "";';
 				echo '</script>';
-				//echo "<meta http-equiv='refresh' content='0'>";
 			}
 		}
 	}

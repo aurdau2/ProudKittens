@@ -1,7 +1,17 @@
 <?php
+error_reporting(0);
   session_start();
-  unset($_SESSION['uname']);
-  session_destroy();
+  if($_SESSION['uname'] != "")
+	  echo "<script type='text/javascript'> document.location = 'Home.php'; </script>";
+  /*if(localStorage.username != ""){
+	  
+	  echo '<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>';
+      echo '<script type="text/javascript">';
+	  echo 'alert("a")';
+	  echo 'document.getElementById("usrLogin").value = localStorage.username;';
+	  echo 'document.getElementById("rememberMe").checkBoxValidation = "checked";';
+	  echo '</script>';
+  }*/
   ?>
 <html>
 <head><title>CarMedia</title>
@@ -184,8 +194,8 @@
 
 /* Style the horizontal ruler */
 hr {
-  border: 1px solid rgba(255, 255, 255, 0.7)
-  margin-bottom: 25px;
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  margin-bottom: 10px;
 }
  
 /* The Close Button (x) */
@@ -215,6 +225,23 @@ hr {
 	border: 1px solid rgba(255, 255, 255, 0.4);
 	margin-bottom: -5px;
 }
+
+/* Add Zoom Animation */
+.animate {
+  -webkit-animation: animatezoom 0.6s;
+  animation: animatezoom 0.6s
+}
+
+@-webkit-keyframes animatezoom {
+  from {-webkit-transform: scale(0)} 
+  to {-webkit-transform: scale(1)}
+}
+  
+@keyframes animatezoom {
+  from {transform: scale(0)} 
+  to {transform: scale(1)}
+}
+
   </style>
   
   
@@ -227,7 +254,7 @@ hr {
   </div>
 
   <div class="content" role="main" style="font-family: arial;">
-	 <form name="loginform">
+	 <form name="loginform" id="login">
        <mat-card class="loginCard">
         <mat-card-title 
         class="header"
@@ -235,7 +262,7 @@ hr {
 		
             <p>
               <mat-form-field class="username"> 
-                <input type="text" id="usrLogin" style="margin-top: 15px;"matInput placeholder="username" name="username"
+                <input type="text" id="usrLogin" class="usrLogin" style="margin-top: 15px;"matInput placeholder="username" name="username"
 				oninvalid="this.setCustomValidity('Please fill out this field.')"
 				onchange="this.setCustomValidity('')"required title="Please fill out this field.">
               </mat-form-field>
@@ -250,11 +277,11 @@ hr {
             </p>
 			
 			<label style="color: rgba(255, 255, 255, 0.7);">
-        <input type="checkbox" checked="checked" name="remember" style="margin-bottom:0px; color: rgba(255, 255, 255, 0.7);"> Remember me
+        <input type="checkbox" id="rememberMe" name="remember" style="margin-bottom:0px; color: rgba(255, 255, 255, 0.7);"> Remember username
       </label>
 			
             <div class="button">
-              <button type="submit" class="loginBtn" onclick="return validateFormLogin();" mat-button>Go!</button>
+              <button type="submit" value="submit" id="b" class="loginBtn" onclick="return validateFormLogin();" mat-button>Go!</button>
             </div>
 			
 			<hr class="hr1">
@@ -268,9 +295,9 @@ hr {
 <p class="sad">"Be grateful, for we still have internal combustion cars. In 30 years it will be a rarity..."</p>
 
 
-<div id="id01" class="modal" style="font-family: arial;">
+<div id="id01" class="modal " style="font-family: arial;">
   <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close">&times;</span>
-  <form name="signupform" class="modal-content" onsubmit="return validateForm();">
+  <form name="signupform" class="modal-content animate" onsubmit="return validateForm();">
     <div class="container">
       <h1 style="color: rgba(255, 255, 255, 1);">Sign Up</h1>
       <p style="color: rgba(255, 255, 255, 0.7);">Please fill in this form to create an account.</p>
@@ -299,9 +326,11 @@ hr {
   </form>
    <p id="msg"></p>
 </div>
-
+<script src="https://code.jquery.com/jquery-3.5.1.min.js">
+</script>
   <script>
 function validateForm() {
+	
   var usr = document.forms["signupform"]["username"].value;
   var psw = document.forms["signupform"]["password"].value;
   var pswRep = document.forms["signupform"]["psw-repeat"].value;
@@ -325,8 +354,8 @@ function validateForm() {
 </script>
     <script type="text/javascript">
     function clickButtonInsert(){
-    var name=document.getElementById('usr').value;
-    var descr=document.getElementById('psw1').value;
+    var usrname=document.getElementById('usr').value;
+    var passw=document.getElementById('psw1').value;
     $.ajax({
             type:"POST",
             url:"insert-on-register.php",
@@ -363,9 +392,30 @@ function validateFormLogin() {
 <script src="https://code.jquery.com/jquery-3.5.1.min.js">
 </script>
     <script type="text/javascript">
+	
+	if(localStorage.username != ""){
+	  document.getElementById("usrLogin").value = localStorage.username;
+	  document.getElementById("rememberMe").checked = "checked";
+	}
+	else {
+		document.getElementById("usrLogin").value = "";
+		document.getElementById("rememberMe").checked = "";
+	}
+  
     function clickButtonVerify(){
+		if ($('#rememberMe').is(':checked')) {
+            localStorage.username = $('#usrLogin').val();
+            localStorage.checkBoxValidation = $('#rememberMe').val();
+			console.log(localStorage.username);
+        } else {
+            localStorage.username = '';
+            localStorage.checkBoxValidation = '';
+        }
+	
+		
     var usrname=document.getElementById('usrLogin').value;
     var passw=document.getElementById('pswLogin').value;
+	
     $.ajax({
             type:"POST",
             url:"verify-login.php",

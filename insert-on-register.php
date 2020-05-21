@@ -8,7 +8,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 $hashedPassword = password_hash( $password, PASSWORD_DEFAULT );
 
-if (!empty($username) || !empty($password)){
+if (!empty($username) && !empty($password)){
  $host = "localhost";
     $dbUsername = "root";
     $dbPassword = "";

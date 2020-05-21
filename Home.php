@@ -1,6 +1,12 @@
 <?php
-	session_start();
-	//echo $_SESSION['uname'];
+	session_start(); 
+	if($_SESSION['uname'] == ""){
+		echo '<script language="javascript">';
+		echo 'alert("You have been signed out.");';
+		echo '</script>';
+		echo "<script type='text/javascript'> document.location = 'Login.php'; </script>";
+	}
+	//$_SESSION['page'] = "Home";
 ?>
 <html>
 <head><title>CarMedia</title>
@@ -186,7 +192,7 @@ html, body {
 <a class="name" href="Home.php">/CM</a>
 <p style="color: white; opacity: 1; font-family: arial; font-size: 12px; display: block;">
 <i class="fa fa-circle-o-notch" aria-hidden="true"></i><?php echo $_SESSION['uname']; ?></p>
-<button class="dropdown-btn">Categories<i class="fa fa-caret-down"></i></button>
+<button class="dropdown-btn">Categories<i class="fa fa-caret-down"></i>(-)</button>
   <div class="dropdown-container">
     <a href="#">- Show Off</a>
 	<a href="#">- Events</a>
@@ -194,11 +200,11 @@ html, body {
     <a href="#">- Mods</a>
     <a href="#">- Gas About</a>
   </div>
-<a href="mygarage.php">My Garage</a>
+<a href="MyGarage.php">My Garage</a>
 <!--<a href="MyGarage.html">Groups</a> //nespesiu sito padaryt-->
-<a href="Settings.html">Settings</a>
-<a href="About.html">About</a>
-<a href="Login.php" class="aaa" style="color: rgba(255, 0, 0, 1); ">Sign Out</a>
+<a href="Settings.html">Settings(-)</a>
+<a href="About.html">About(-)</a>
+<a href="sign-out.php" class="aaa" style="color: rgba(255, 0, 0, 1); ">Sign Out</a>
 <br>
 <br>
 
