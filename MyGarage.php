@@ -276,10 +276,16 @@ hr {
 	height: 100%;
 	width: 300px;
 	//border: 2px solid red;
-	background-color: rgba(150, 150, 150, 1);
-	//border-radius: 30px;
+	background-color: rgba(0, 0, 0, 0.3);
+	border-radius: 30px;
 	position: relative;
 	float: left;
+}
+
+.leftAdded:hover {
+	cursor: pointer;
+	background-color: rgba(0, 0, 0, 0.9);
+	//background-color: rgba(255, 255, 255, 0.6);
 }
 
 .right {
@@ -299,12 +305,17 @@ hr {
 	height: 100%;
 	width: 300px;
 	//border: 2px solid red;
-	background-color: rgba(150, 150, 150, 1);
-	//border-radius: 30px;
-	position: relative;
+	background-color: rgba(0, 0, 0, 0.3);
+	border-radius: 30px;
 	position: relative;
 	margin-top: -700px;
 	float: right;
+}
+
+.rightAdded:hover {
+	cursor: pointer;
+	background-color: rgba(0, 0, 0, 0.9);
+	//background-color: rgba(255, 255, 255, 0.6);
 }
 
 .right:hover {
@@ -335,10 +346,17 @@ hr {
 	display: none;
 	height: 100%;
 	width: 300px;
-	background-color: rgba(150, 150, 150, 1);
+	background-color: rgba(0, 0, 0, 0.3);
 	position: relative;
 	margin-left: auto;
     margin-right: auto;
+	border-radius: 30px;
+}
+
+.centerAdded:hover {
+	cursor: pointer;
+	background-color: rgba(0, 0, 0, 0.9);
+	//background-color: rgba(255, 255, 255, 0.6);
 }
 
 .center:hover {
@@ -355,7 +373,7 @@ hr {
 
 .box {
   //background-color: cyan;
-  margin-top: 5%;
+  margin-top: 6%;
   margin-left: auto;
   margin-right: auto;
   //border: 1px solid white;
@@ -434,11 +452,106 @@ input[type=text], input[type=number] {
   to {transform: scale(1)}
 }
 
+.hr2 {
+	border: 1px solid rgba(255, 255, 255, 0.7);
+	margin-top: -10px;
+}
+/*
+#limg {
+	position: absolute;
+  clip: rect(0px, 300px, 580px, 0px);
+  overflow: hidden;
+  margin-top: -15px;
+  //width: 300px;
+}
+*/
+
+.leftDelete, .centerDelete, .rightDelete {
+	 //margin-top: 565px;
+	 width: 300px;
+	 height: 48px;
+	 background-color: rgba(130, 0, 0, 0.7);
+	 border: 0px solid white;
+	 border-bottom-left-radius: 30px;
+	 border-bottom-right-radius: 30px;
+	 color: rgba(255, 255, 255, 0.5);
+	 font-family: arial;
+	 font-size: 40px;
+}
+ 
+.leftDelete:hover {
+	 background-color: rgba(200, 0, 0, 0.9);
+	 cursor: pointer;
+	 color: rgba(255, 255, 255, 0.8);
+}
+
+.centerDelete:hover {
+	background-color: rgba(200, 0, 0, 0.9);
+	 cursor: pointer;
+	 color: rgba(255, 255, 255, 0.8);
+}
+
+.rightDelete:hover {
+	background-color: rgba(200, 0, 0, 0.9);
+	 cursor: pointer;
+	 color: rgba(255, 255, 255, 0.8);
+}
+
+.crop {
+    width: 300px;
+    height: 580px;
+    overflow: hidden;
+	margin-top: -15px;
+}
+
+.cropCenter {
+    width: 300px;
+    height: 580px;
+    overflow: hidden;
+	margin-top: -15px;
+	opacity: 0.7;
+}
+
+.crop #limg {  
+   opacity: 0.7;
+}
+
+.crop #cimg {  
+   //opacity: 0.7;
+}
+
+.crop #rimg {  
+   opacity: 0.7;
+}
+
+.crop #limg:hover {
+   opacity: 1;
+}
+
+.cropCenter:hover {
+   opacity: 1;
+}
+
+.crop #rimg:hover {
+   opacity: 1;
+}
+
+.garageName {
+	text-align: center;
+	font-family: impact;
+	color: white;
+	font-size: 45px;
+	position: fixed;
+	margin-left: 40%;
+	margin-top: 1%;
+	text-shadow: -2px -0px 20px #000000;
+}
 </style>
 
 </head>
 
 <body>
+<pre class="garageName"><i style="color: rgb(170, 0, 0);"><?php echo $_SESSION['uname']; ?>'s</i>   garage</pre>
 <div class="grid-container">
 <div class="menu-column">
 <a class="name" href="Home.php">/CM</a>
@@ -468,14 +581,14 @@ input[type=text], input[type=number] {
 <div class="main-feed">
 <div class="box">
 
+
 <div id="lf" class="leftAdded">
-<label style="color: white; margin-top: 100px;" >Make</label>
-<input id="lmk" type="text" style="margin-top: 10px; margin-bottom: 10px;" placeholder="">
-<label style="color: white;" >Model</label>
-<input id="lmd" type="text" style="margin-top: 10px; margin-bottom: 10px;" placeholder="">
-<label style="color: white;" >Year</label>
-<input id="lyr" type="text" style="margin-top: 10px; margin-bottom: 10px;" placeholder="">
-<button id="ldelete"> Delete </button>
+<p id="lpmake" style="color: white; margin-top: 10px; font-family: arial; font-size: 30px; text-align: center;" ></p>
+<p id="lpmodelyear" style="color: rgba(255, 255, 255, 0.8); margin-top: -30px; font-family: arial; font-size: 20px; text-align: center;" ></p>
+<div class="crop">
+<img id="limg" src="" title="Show details"></img>
+</div>
+<button id="ldelete" class="leftDelete" title="Remove vehicle"> X </button>
 </div>
 
 <div id="le" class="left" title="Add a new vehicle"> 
@@ -484,12 +597,12 @@ input[type=text], input[type=number] {
 </div>
 
 <div id="cf" class="centerAdded">
-<label style="color: white; margin-top: 100px;" >Make</label>
-<input id="cmk" type="text" style="margin-top: 10px; margin-bottom: 10px;" placeholder="">
-<label style="color: white;" >Model</label>
-<input id="cmd" type="text" style="margin-top: 10px; margin-bottom: 10px;" placeholder="">
-<label style="color: white;" >Year</label>
-<input id="cyr" type="text" style="margin-top: 10px; margin-bottom: 10px;" placeholder="">
+<p id="cpmake" style="color: white; padding-top: 10px; font-family: arial; font-size: 30px; text-align: center;" ></p>
+<p id="cpmodelyear" style="color: rgba(255, 255, 255, 0.8); margin-top: -30px; font-family: arial; font-size: 20px; text-align: center;" ></p>
+<div class="cropCenter">
+<img id="cimg" src="" title="Show details"></img>
+</div>
+<button id="cdelete" class="centerDelete" title="Remove vehicle"> X </button>
 </div>
 
 <div id="ce" class="center" title="Add a new vehicle">
@@ -498,12 +611,12 @@ input[type=text], input[type=number] {
 </div>
 
 <div id="rf" class="rightAdded">
-<label style="color: white; margin-top: 100px;" >Make</label>
-<input id="rmk" type="text" style="margin-top: 10px; margin-bottom: 10px;" placeholder="">
-<label style="color: white;" >Model</label>
-<input id="rmd" type="text" style="margin-top: 10px; margin-bottom: 10px;" placeholder="">
-<label style="color: white;" >Year</label>
-<input id="ryr" type="text" style="margin-top: 10px; margin-bottom: 10px;" placeholder="">
+<p id="rpmake" style="color: white; margin-top: 10px; font-family: arial; font-size: 30px; text-align: center;" ></p>
+<p id="rpmodelyear" style="color: rgba(255, 255, 255, 0.8); margin-top: -30px; font-family: arial; font-size: 20px; text-align: center;" ></p>
+<div class="crop">
+<img id="rimg" src="" title="Show details"></img>
+</div>
+<button id="rdelete" class="rightDelete" title="Remove vehicle"> X </button>
 </div>
 
 <div id="re" class="right" title="Add a new vehicle">
@@ -518,7 +631,7 @@ input[type=text], input[type=number] {
 </div>
 <div id="id01" class="modal" style="font-family: arial;">
   
-  <form name="addCarForm" class="modal-content animate"><!--onsubmit="return validateForm();"-->
+  <form id="addCarForm" class="modal-content animate"><!--onsubmit="return validateForm();"-->
     <div class="container">
 	<span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close">&times;</span>
       <h1 style="color: rgba(255, 255, 255, 1);">New vehicle</h1>
@@ -532,11 +645,11 @@ input[type=text], input[type=number] {
 				<label for="name"><b style="color: rgba(255, 255, 255, 0.7); ">Year </b><b style="color: rgba(255, 0, 0, 0.7);">*</b></label>
       <input id="year" type="number" min="1900" max="2020" style="margin-top: 10px; margin-bottom: 10px;" placeholder="" name="year" oninvalid="this.setCustomValidity('Model year is invalid. Must be 1900-2020.')"
 				onchange="this.setCustomValidity('')" required title="Please fill out this field.">
-      
       <p style="color: rgba(255, 255, 255, 0.7);"><b style="color: rgba(255, 0, 0, 0.7);">*</b> - required field.</p>
-
+	  
+	  <input type="file" id="photo" name="photo">
       <div class="clearfix">
-	  <button type="submit" value="Submit" class="signupbtn" id="signbut" > <!--onclick="return validateForm();"-->Add to garage</button>
+	  <button type="submit" name='submit_image' value="Upload Image" class="signupbtn" id="signbut" > <!--onclick="return validateForm();"-->Add to garage</button>
       </div>
     </div>
   </form>
@@ -545,7 +658,8 @@ input[type=text], input[type=number] {
 </div>
 
 
-
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="http://malsup.github.com/jquery.form.js"></script>
 <script>
 var dropdown = document.getElementsByClassName("dropdown-btn");
 var i;
@@ -561,10 +675,16 @@ for (i = 0; i < dropdown.length; i++) {
   }
   });
 }
-</script>
-<script src="https://code.jquery.com/jquery-3.5.1.min.js">
-</script>
-<script>
+
+
+
+/*function addPhoto(){
+$(document).ready(function() { 
+ $('#addCarForm').ajaxForm(function() { 
+ alert("Successfully uploaded."); 
+ }); 
+});
+}*/
 /*$(document).click(function(event) {
     var field = event.target;
 	var fieldID = $(event.target)[0].id;
@@ -596,9 +716,45 @@ document.getElementById("le").addEventListener("click", leftClicked);
 document.getElementById("ce").addEventListener("click", centerClicked);
 document.getElementById("re").addEventListener("click", rightClicked);
 document.getElementById("ldelete").addEventListener("click", leftDelete);
+document.getElementById("cdelete").addEventListener("click", centerDelete);
+document.getElementById("rdelete").addEventListener("click", rightDelete);
 
 function leftDelete(){
-	var id = "le";
+	var idd = "le";
+	$.ajax({
+            type:"POST",
+            url:"delete-vehicle.php",
+            data: 
+            {  
+			   'id' :idd
+            },
+            cache:false,
+            success: function (html) 
+            {
+               $('#msg').html(html);
+            }
+            });
+}
+
+function centerDelete(){
+	var id = "ce";
+	$.ajax({
+            type:"POST",
+            url:"delete-vehicle.php",
+            data: 
+            {  
+			   'id' :id
+            },
+            cache:false,
+            success: function (html) 
+            {
+               $('#msg').html(html);
+            }
+            });
+}
+
+function rightDelete(){
+	var id = "re";
 	$.ajax({
             type:"POST",
             url:"delete-vehicle.php",
@@ -682,10 +838,6 @@ function validateForm(id) {
   else
 	 return clickButtonInsert(id);
 }
-</script>
-<script src="https://code.jquery.com/jquery-3.5.1.min.js">
-</script>
-    <script type="text/javascript">
 	
 
 	function addWords(id){
@@ -694,19 +846,16 @@ function validateForm(id) {
 		var year = document.getElementById('year').value;
 		//////
 		if(id == "le"){
-		document.getElementById('lmk').value = make;
-		document.getElementById('lmd').value = model;
-		document.getElementById('lyr').value = year;
+		document.getElementById('lpmake').innerHTML = make;
+		document.getElementById('lpmodelyear').innerHTML = model + " <i>(" + year + ")</i>";
 		}
-		if(id == "ce"){
-		document.getElementById('cmk').value = make;
-		document.getElementById('cmd').value = model;
-		document.getElementById('cyr').value = year;
+	    if(id == "ce"){
+		document.getElementById('cpmake').innerHTML = make;
+		document.getElementById('cpmodelyear').innerHTML = model + " <i>(" + year + ")</i>";
 		}
 		if(id == "re"){
-		document.getElementById('rmk').value = make;
-		document.getElementById('rmd').value = model;
-		document.getElementById('ryr').value = year;
+		document.getElementById('rpmake').innerHTML = make;
+		document.getElementById('rpmodelyear').innerHTML = model + " <i>(" + year + ")</i>";
 		}
 		//////
 		document.getElementById('make').value = "";
@@ -717,22 +866,34 @@ function validateForm(id) {
     var make = document.getElementById('make').value;
     var model = document.getElementById('model').value;
 	var year = document.getElementById('year').value;
+	var pic = $("#photo").prop('files')[0];
+	
+	var data = new FormData();
+    data.append('make', make);
+    data.append('model', model);
+    data.append('year', year);
+	data.append('id', id);
+    data.append('pic', pic);
+
 	
     $.ajax({
             type:"POST",
             url:"insert-vehicle.php",
-            data: 
-            {  
+            data: data,
+            /*{  
                'make' :make,
                'model' :model, 
 			   'year' :year,
 			   'id' :id
-            },
+            }, */
+			processData: false,
+            contentType: false,
             cache:false,
             success: function (html) 
             {
                $('#msg').html(html);
 			   addWords(id);
+			   //addPhoto();
             }
             });
             return false;
@@ -760,19 +921,17 @@ $user = $_SESSION['uname'];
 				<script type="text/javascript" >
 				document.getElementById("le").style.display = "none";
 				document.getElementById("id01").style.display = "none";
-				document.getElementById('lmk').value = "<?php echo $make; ?>";
-				document.getElementById('lmd').value = "<?php echo $model; ?>";
-				document.getElementById('lyr').value = "<?php echo $year; ?>";
-				document.getElementById("lf").style.display = "block";
+				document.getElementById('lpmake').innerHTML ="<?php echo $make; ?>";
+				document.getElementById('lpmodelyear').innerHTML = "<?php echo $model; ?>" + " <i>(" + "<?php echo $year; ?>" + ")</i>";
+				document.getElementById("lf").style.display = "block";	
 				</script><?php
 			}
 			if($section == "ce"){?>
 				<script type="text/javascript" >
 				document.getElementById("ce").style.display = "none";
 				document.getElementById("id01").style.display = "none";
-				document.getElementById('cmk').value = "<?php echo $make; ?>";
-				document.getElementById('cmd').value = "<?php echo $model; ?>";
-				document.getElementById('cyr').value = "<?php echo $year; ?>";
+				document.getElementById('cpmake').innerHTML ="<?php echo $make; ?>";
+				document.getElementById('cpmodelyear').innerHTML = "<?php echo $model; ?>" + " <i>(" + "<?php echo $year; ?>" + ")</i>";
 				document.getElementById("cf").style.display = "block";
 				</script><?php
 			}
@@ -780,14 +939,34 @@ $user = $_SESSION['uname'];
 				<script type="text/javascript" >
 				document.getElementById("re").style.display = "none";
 				document.getElementById("id01").style.display = "none";
-				document.getElementById('rmk').value = "<?php echo $make; ?>";
-				document.getElementById('rmd').value = "<?php echo $model; ?>";
-				document.getElementById('ryr').value = "<?php echo $year; ?>";
+				document.getElementById('rpmake').innerHTML ="<?php echo $make; ?>";
+				document.getElementById('rpmodelyear').innerHTML = "<?php echo $model; ?>" + " <i>(" + "<?php echo $year; ?>" + ")</i>";
 				document.getElementById("rf").style.display = "block";
 				</script><?php
 			}
 		}
-		exit();
+		$SELECT = "SELECT photo, section FROM car_picture WHERE user = ?";
+		$stmtt = $conn->prepare($SELECT);
+		$stmtt->bind_param("s", $user);
+		$stmtt->execute();
+		$stmtt->bind_result($storedPhoto, $section);
+			while ($stmtt->fetch()) {
+				if($section == "le"){?>
+				<script type="text/javascript" >
+				document.getElementById("limg").src = "images/" + "<?php echo $storedPhoto; ?>";
+				</script><?php
+				}
+				if($section == "ce"){?>
+				<script type="text/javascript" >
+				document.getElementById("cimg").src = "images/" + "<?php echo $storedPhoto; ?>";
+				</script><?php
+				}
+				if($section == "re"){?>
+				<script type="text/javascript" >
+				document.getElementById("rimg").src = "images/" + "<?php echo $storedPhoto; ?>";
+				</script><?php
+				}
+			}
      $stmt->close();
      $conn->close();
 	}

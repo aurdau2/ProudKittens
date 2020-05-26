@@ -46,11 +46,4 @@ if (!empty($username) && !empty($password)){
      $conn->close();
     }
 }
-  /*if (empty($username)){
- echo '<p style="color: white;">Please enter your new username.</p>';
-}
- if (empty($password)){
- echo '<p style="color: white;">Please enter your new password.</p>';
-}*/
-
 ?>

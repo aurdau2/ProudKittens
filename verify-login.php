@@ -27,9 +27,7 @@ if (!empty($username) && !empty($password)){
 				 session_start();
 				 $_SESSION['uname'] = $username;
 				 echo "<script type='text/javascript'> document.location = 'Home.php'; </script>";
-				 $stmt->close();
-				 $conn->close();
-				 exit();
+				 
 			}else {
 				echo '<script language="javascript">';
 				echo 'alert("Invalid password.");';
@@ -37,6 +35,9 @@ if (!empty($username) && !empty($password)){
 				echo '</script>';
 			}
 		}
+		$stmt->close();
+		$conn->close();
+		exit();
 	}
 }
 ?>
